@@ -9,20 +9,56 @@ $font-family-sans-serif: $body-font;
 $headings-font-family:   $headers-font;
 $body-bg:                $light-gray;
 $font-size-base:         1rem;
+$line-height-base:       1.6;
 
 // Colors
-$body-color: $gray;
-$primary:    $blue;
-$success:    $green;
-$info:       $yellow;
-$danger:     $red;
-$warning:    $orange;
+$body-bg:    $bg-base;
+$body-color: $text-primary;
+// Colors bootstrapp
+$primary:    $accent;
+$success:    $color-success;
+$info:       $color-info;
+$warning:    $accent;
+$secondary:  $bg-elevated;
+$light:      $bg-elevated;
+$dark:       $bg-surface;
 
-// Buttons & inputs' radius
-$border-radius-sm:            .0625rem;
-$border-radius:               .125rem;
-$border-radius-lg:            .25rem;
-$border-radius-xl:            .5rem;
-$border-radius-xxl:           1rem;
+// ── Liens ─────────────────────────────────────────────────────────────────
+$link-color:            $accent;
+$link-hover-color:      $accent-hover;
+$link-decoration:       none;
+$link-hover-decoration: underline;
 
-// Override other variables below!
+// ── Cartes ────────────────────────────────────────────────────────────────
+$card-bg:           $bg-surface;
+$card-color:        $text-primary;
+$card-border-color: $border-subtle;
+$card-cap-bg:       $bg-elevated;
+
+// ── Formulaires ───────────────────────────────────────────────────────────
+$input-bg:                 $bg-elevated;
+$input-color:              $text-primary;
+$input-border-color:       $border-strong;
+$input-focus-bg:           $bg-elevated;
+$input-focus-border-color: $accent;
+$input-focus-box-shadow:   0 0 0 .2rem rgba($accent, .15);
+$input-placeholder-color:  $text-muted;
+$form-label-color:         $text-secondary;
+$form-label-font-weight:   500;
+
+// ── Boutons ───────────────────────────────────────────────────────────────
+$btn-border-radius:    .375rem;
+$btn-border-radius-sm: .25rem;
+$btn-border-radius-lg: .5rem;
+$btn-padding-y:        .5rem;
+$btn-padding-x:        1.25rem;
+
+// ── Bordures ──────────────────────────────────────────────────────────────
+$border-color:     $border-subtle;
+$border-radius:    .375rem;
+$border-radius-sm: .25rem;
+$border-radius-lg: .5rem;
+$border-radius-xl: .75rem;
+
+// ── Transitions ───────────────────────────────────────────────────────────
+$transition-base: all .2s ease-in-out;

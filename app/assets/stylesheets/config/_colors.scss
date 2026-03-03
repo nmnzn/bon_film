@@ -1,10 +1,30 @@
-// Define variables for your color scheme
+// ── Palette Anthracite ────────────────────────────────────────────────────
+$bg-base:       #0f1117;   // fond principal de la page
+$bg-surface:    #161922;   // fond des cartes
+$bg-elevated:   #1e2235;   // éléments surélevés (hover, inputs)
+$border-subtle: #252a3d;   // bordures discrètes
+$border-strong: #313654;   // bordures visibles
 
-// For example:
-$red: #FD1015;
-$blue: #0D6EFD;
-$yellow: #FFC65A;
-$orange: #E67E22;
-$green: #1EDD88;
-$gray: #0E0000;
-$light-gray: #F4F4F4;
+// ── Textes ────────────────────────────────────────────────────────────────
+$text-primary:   #e8eaf0;
+$text-secondary: #8d91ab;
+$text-muted:     #545872;
+
+// ── Accent (or cinéma) ────────────────────────────────────────────────────
+$accent:       #e8a020;
+$accent-hover: #f0b840;
+$accent-dark:  #c48810;
+
+// ── Status ────────────────────────────────────────────────────────────────
+$color-danger:  #e05555;
+$color-success: #4caf7d;
+$color-info:    #5b9bd5;
+
+// ── Alias Bootstrap (variables attendues) ────────────────────────────────
+$blue:       $color-info;
+$green:      $color-success;
+$red:        $color-danger;
+$yellow:     $accent;
+$orange:     #e67e22;
+$gray:       $text-secondary;
+$light-gray: $bg-surface;
