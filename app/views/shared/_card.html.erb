@@ -1,0 +1,12 @@
+<div class="movie-card">
+<%= image_tag list.movie.poster_url, alt: list.movie.title, class: "movie-card-poster" %>
+  <div class="movie-card-body">
+    <h3 class="movie-card-title"><%= list.movie.title %></h3>
+    <p class="movie-card-rating"><%= list.movie.rating.truncate(1) %></p>
+    <p class="movie-card-overview"><%= truncate(list.movie.overview, length: 70) %></p>
+    <p class="movie-card-comment">| <%= list.comment %> |</p>
+    <%= link_to "Supprimer", list_path(bookmark),
+            data: { turbo_method: :delete, turbo_confirm: "Supprimer cette liste ?" },
+            class: "btn btn-danger-ghost" %>
+  </div>
+</div>
