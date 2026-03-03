@@ -1,0 +1,63 @@
+
+.btn-accent {
+  background-color: $accent;
+  color: #0f1117;
+  border: 1px solid $accent;
+  font-weight: 600;
+  transition: $transition-base;
+
+  &:hover, &:focus {
+    background-color: $accent-hover;
+    border-color: $accent-hover;
+    color: #0f1117;
+  }
+
+  &:active {
+    background-color: $accent-dark;
+    border-color: $accent-dark;
+  }
+}
+
+
+.btn-ghost {
+  background-color: transparent;
+  color: $text-secondary;
+  border: 1px solid $border-strong;
+  transition: $transition-base;
+
+  &:hover, &:focus {
+    background-color: $bg-elevated;
+    color: $text-primary;
+    border-color: $border-strong;
+  }
+}
+
+
+.btn-danger-ghost {
+  background-color: transparent;
+  color: $color-danger;
+  border: 1px solid transparent;
+  font-size: .8rem;
+  padding: .3rem .75rem;
+  transition: $transition-base;
+
+  &:hover, &:focus {
+    background-color: rgba($color-danger, .1);
+    border-color: rgba($color-danger, .3);
+    color: $color-danger;
+  }
+}
+
+
+.btn-link-subtle {
+  color: $text-muted;
+  text-decoration: none;
+  font-size: .875rem;
+  transition: color .2s;
+  display: inline-block;
+  margin-bottom: .5rem;
+
+  &:hover {
+    color: $text-secondary;
+  }
+}
