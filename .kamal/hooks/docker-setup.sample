@@ -1,3 +1,4 @@
 #!/bin/sh
 
 echo "Docker set up on $KAMAL_HOSTS..."
+#!/bin/sh
