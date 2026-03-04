@@ -61,4 +61,8 @@ titre1, titre2, titre3, titre4, titre5"
 #     movies_serialized = URI.parse(url).read
 #     movies = JSON.parse(movies_serialized)
 #   end
+  # index new create show destroy
+  def index
+  @lists = current_user.lists
+  end
 end
