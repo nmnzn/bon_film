@@ -1,4 +1,7 @@
 class ListsController < ApplicationController
+  require "json"
+  require "open-uri"
+
   # index new create show destroy
   def index
    @lists = current_user.lists
@@ -14,7 +17,13 @@ class ListsController < ApplicationController
     if @list.save
       prompt = @list.prompt
       @suggestions = movies_suggestion(prompt)
+<<<<<<< HEAD
       movies_create(movies_data)
+=======
+      array_for_api = call_api(@suggestions)
+      raise ## suite pour Neil afin de créer 5 instances de Movies à associer à la @list à partir de cet array de 5 hash (chaque hash égal un movie)
+      #   @list.save
+>>>>>>> origin
       redirect_to list_path(@list)
     else
       render :new, status: :unprocessable_entity
@@ -46,9 +55,29 @@ class ListsController < ApplicationController
 
     chat = RubyLLM.chat
     chat.with_instructions(system_prompt)
+<<<<<<< HEAD
+    chat.ask(prompt).content.split(", ")
+  end
+
+  def call_api(array_from_llm)
+    array_of_hash = []
+    array_from_llm.each do |movie|
+      url = "https://api.themoviedb.org/3/search/movie?query=#{movie}&api_key=26306aac9a2af9029b1001967bb0b129"
+      movie = URI.parse(url).read
+      movie_parsed = JSON.parse(movie)
+      hash_clean = movie_parsed["results"].first
+      array_of_hash.push(hash_clean)
+    end
+    return array_of_hash
+  end
+
+  def index
+    @lists = current_user.lists
+=======
     chat.ask(prompt)
   end
 
+<<<<<<< HEAD
   def movies_create(movies_data)
     movies_data.each do |data|
       movie = Movie.find_or_create_by(tmdb_id: data[:id]) do |value|
@@ -59,5 +88,8 @@ class ListsController < ApplicationController
       end
       @list.movies << movie
     end
+=======
+>>>>>>> master
+>>>>>>> origin
   end
 end
