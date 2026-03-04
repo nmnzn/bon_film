@@ -21,14 +21,17 @@ end
 
 puts "Seed OK user type : test@test.com / password123"
 
-Movie.new(
+movie_1 = Movie.new(
   overview: "tres bon film",
   poster_path:"url",
   rate_average: 3.2,
   title: "mon film",
   tmdb_id: 1
 )
-Movie.new(
+
+movie_1.save
+
+movie_2 = Movie.new(
   overview: "tres tres bon film",
   poster_path: "url",
   rate_average: 4.2,
@@ -36,35 +39,41 @@ Movie.new(
   tmdb_id: 2
 )
 
+movie_2.save
+
 puts "Seed OK list create"
 
-List.new(
+list_1 = List.new(
   name: "Ma list",
   prompt: "film comique",
   user_id: 1
 )
+list_1.save
 
-List.new(
+list_2 = List.new(
   name: "T'as list",
   prompt: "film comique",
   user_id: 1
 )
-
+list_2.save
   puts "Seed OK list create"
 
-Link.new(
+link_1 = Link.new(
   list_id: 1,
   movie_id: 2
 )
+link_1.save
 
-Link.new(
+link_2 = Link.new(
   list_id: 1,
   movie_id: 1
 )
+link_2.save
 
-Link.new(
+link_3 = Link.new(
   list_id: 2,
   movie_id: 2
 )
+link_3.save
 
 puts "Seed OK link create"
