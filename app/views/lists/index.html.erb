@@ -2,4 +2,7 @@
 <% content_for :navbar_actions do %>
   <%= link_to "Add list", root_path, class: "btn btn-accent btn-sm" %>
 <% end %>
+<% @lists.each do |list|%>
+<h2><%= list.title %></h2>
+list.prompt
 <p>Salut c'est Perrine</p>
