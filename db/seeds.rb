@@ -29,7 +29,10 @@ movie_1 = Movie.new(
   tmdb_id: 1
 )
 
-movie_1.save!
+
+
+movie_1.save
+
 
 movie_2 = Movie.new(
   overview: "tres tres bon film",
@@ -48,7 +51,9 @@ list_1 = List.new(
   prompt: "film comique",
   user_id: 1
 )
-list_1.save!
+
+list_1.save
+
 
 list_2 = List.new(
   name: "T'as list",
