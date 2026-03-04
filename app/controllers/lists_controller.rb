@@ -1,5 +1,9 @@
 class ListsController < ApplicationController
-  # index new create show destroy
+
+    require "json"
+    require "open-uri"
+
+    # index new create show destroy
   def index
     # @lists = current_user.lists
   end
@@ -49,4 +53,12 @@ titre1, titre2, titre3, titre4, titre5"
     chat.with_instructions(system_prompt)
     chat.ask(prompt)
   end
+
+#   def call_api(array_from_llm)
+#     array_of_hash = []
+#     array_from_llm.each do ||
+#     url = "https://api.themoviedb.org/3/search/movie?query=titanic&api_key=#{TMDB_API_KEY}"
+#     movies_serialized = URI.parse(url).read
+#     movies = JSON.parse(movies_serialized)
+#   end
 end
