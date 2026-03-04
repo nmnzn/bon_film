@@ -1,0 +1,5 @@
+<%= simple_form_for(list) do |f| %>
+  <%= f.input :name, :label => "The name of your list", :placeholder => "Sunday movies" %>
+  <%= f.input :prompt, :label => "What kind of movie do you want in your list ?", :placeholder => "I want movies nice to watch on a sunday evening, just to chill and laught a little." %>
+  <%= f.submit class:"btn-accent" %>
+<% end %>
