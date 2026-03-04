@@ -55,6 +55,13 @@
 }
 
 
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+  padding: 1.5rem 0;
+}
+
 .movie-card {
   background-color: $bg-surface;
   border: 1px solid $border-subtle;
