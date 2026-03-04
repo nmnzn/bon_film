@@ -1,4 +1,12 @@
-<h1>list index</h1>
 <% content_for :navbar_actions do %>
   <%= link_to "Add list", root_path, class: "btn btn-accent btn-sm" %>
 <% end %>
+
+<div class="container mt-4">
+<h1 class="page-title"> Mes listes</h1>
+
+  <div class="lists-grids">
+  <% @lists.each do |list|%>
+<%= render "shared/list" , list: list%>
+<% end %>
+</div>
