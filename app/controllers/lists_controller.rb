@@ -4,7 +4,7 @@ class ListsController < ApplicationController
 
   # index new create show destroy
   def index
-    # @lists = current_user.lists
+   @lists = current_user.lists
   end
 
   def new
@@ -51,6 +51,7 @@ titre1, titre2, titre3, titre4, titre5"
 
     chat = RubyLLM.chat
     chat.with_instructions(system_prompt)
+<<<<<<< HEAD
     chat.ask(prompt).content.split(", ")
   end
 
@@ -68,5 +69,9 @@ titre1, titre2, titre3, titre4, titre5"
 
   def index
     @lists = current_user.lists
+=======
+    chat.ask(prompt)
+
+>>>>>>> master
   end
 end
