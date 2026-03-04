@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_03_141726) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_03_200839) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -18,9 +18,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_03_141726) do
     t.datetime "created_at", null: false
     t.bigint "list_id", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
     t.index ["list_id"], name: "index_chats_on_list_id"
-    t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
   create_table "links", force: :cascade do |t|
@@ -35,6 +33,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_03_141726) do
   create_table "lists", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
+    t.text "prompt"
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_lists_on_user_id"
@@ -52,8 +51,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_03_141726) do
   create_table "movies", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "overview"
-    t.float "poster_pathrate_average"
+    t.string "poster_path"
+    t.float "rate_average"
     t.string "title"
+    t.integer "tmdb_id"
     t.datetime "updated_at", null: false
   end
 
@@ -216,7 +217,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_03_141726) do
   end
 
   add_foreign_key "chats", "lists"
-  add_foreign_key "chats", "users"
   add_foreign_key "links", "lists"
   add_foreign_key "links", "movies"
   add_foreign_key "lists", "users"
