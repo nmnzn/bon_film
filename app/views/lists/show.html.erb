@@ -1,3 +1,11 @@
+<div class="d-flex justify-content-between ms-5 me-5 ps-5 pt-3 pb-0">
+  <h1 ><%= @list.name %></h1>
+  <div class="justify-content-center">
+  <%= link_to "Delete list", list_path(@list), data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete your list #{@list.name} ?"}, class:"btn btn-danger" %>
+  </div>
+</div>
+
+
 <div class="container">
   <h1><%= @list.name %></h1>
   <div>
