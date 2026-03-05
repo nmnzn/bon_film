@@ -59,8 +59,9 @@ class ListsController < ApplicationController
 
   def call_api(array_from_llm)
     array_of_hash = []
+    api_key = ENV["TMDB_API_KEY"]
     array_from_llm.each do |movie|
-      url = "https://api.themoviedb.org/3/search/movie?query=#{URI.encode_www_form_component(movie)}&api_key=26306aac9a2af9029b1001967bb0b129"
+      url = "https://api.themoviedb.org/3/search/movie?query=#{URI.encode_www_form_component(movie)}&api_key=#{api_key}"
       movie = URI.parse(url).read
       movie_parsed = JSON.parse(movie)
       hash_clean = movie_parsed["results"].first
