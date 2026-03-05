@@ -1,13 +1,17 @@
+<% return if movie.nil? %>
+
 <%= link_to movie_path(movie), class: "movie-card-link" do %>
   <div class="movie-card">
-    <%= image_tag "https://image.tmdb.org/t/p/w500#{movie.poster_path}",
-                  alt: movie.title,
-                  class: "movie-card-poster" %>
+    <% if movie.poster_path.present? %>
+      <%= image_tag "https://image.tmdb.org/t/p/w500#{movie.poster_path}",
+                    alt: movie.title,
+                    class: "movie-card-poster" %>
+    <% end %>
 
     <div class="movie-card-body">
       <h3 class="movie-card-title"><%= movie.title %></h3>
-      <p class="movie-card-rating"><%= movie.rate_average.truncate(1) %></p>
-      <p class="movie-card-overview"><%= truncate(movie.overview, length: 70) %></p>
+      <p class="movie-card-rating">⭐ <%= number_with_precision(movie.rate_average, precision: 1) %></p>
+      <p class="movie-card-overview"><%= truncate(movie.overview.to_s, length: 70) %></p>
     </div>
   </div>
 <% end %>

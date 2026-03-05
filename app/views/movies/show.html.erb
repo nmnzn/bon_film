@@ -12,15 +12,15 @@
     <div class="col-12 col-md-8">
       <h1 class="mb-2"><%= @movie.title %></h1>
 
-      <p class="text-light mb-4">
-      ⭐ <%= number_with_precision(@movie.rate_average, precision: 1) %> / 10
+      <p class="text-secondary mb-4">
+        ⭐ <%= number_with_precision(@movie.rate_average, precision: 1) %> / 10
       </p>
 
       <h5>Synopsis</h5>
       <p><%= @movie.overview %></p>
 
       <% if @movie.tmdb_id.present? %>
-        <p class="text-light small mb-0">TMDB id : <%= @movie.tmdb_id %></p>
+        <p class="text-secondary small mb-0">TMDB id : <%= @movie.tmdb_id %></p>
       <% end %>
     </div>
   </div>
