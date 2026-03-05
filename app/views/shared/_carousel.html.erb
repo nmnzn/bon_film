@@ -1,12 +1,14 @@
-<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-   <div class="carousel-inner">
+
+
+<div id="<%= index %>" class="carousel slide" data-bs-ride="carousel">
     <% movies.each_with_index do |movie, index| %>
+   <div class="carousel-inner">
    
     <div class="carousel-item <%= "active" if index == 0 %>" >
       <%= image_tag "https://image.tmdb.org/t/p/w92#{movie.poster_path}", alt: movie.title, class:"rounded" %>
     </div>
-    <% end %>
   </div>
+    <% end %>
 
 
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
