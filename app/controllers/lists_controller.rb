@@ -60,7 +60,8 @@ class ListsController < ApplicationController
   def call_api(array_from_llm)
     array_of_hash = []
     array_from_llm.each do |movie|
-      url = "https://api.themoviedb.org/3/search/movie?query=#{URI.encode_www_form_component(movie)}&api_key=26306aac9a2af9029b1001967bb0b129"
+      tmdb_key = ENV.fetch('api_key', nil)
+      url = "https://api.themoviedb.org/3/search/movie?query=#{URI.encode_www_form_component(movie)}&api_key=#{tmdb_key}"
       movie = URI.parse(url).read
       movie_parsed = JSON.parse(movie)
       hash_clean = movie_parsed["results"].first
@@ -77,8 +78,7 @@ class ListsController < ApplicationController
         value.poster_path = data["poster_path"]
         value.rate_average = data["vote_average"]
       end
-      @list.movies << movie
+      @list.movies << movie unless @list.movies.include?(movie)
     end
-
   end
 end
