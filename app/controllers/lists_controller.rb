@@ -15,6 +15,7 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
     @list.user_id = current_user.id
     if @list.save
+      Chat.create!(list: @list)
       prompt = @list.prompt
       @suggestions = movies_suggestion(prompt)
       movies_data = call_api(@suggestions)
@@ -29,9 +30,19 @@ class ListsController < ApplicationController
   end
 
   def show
-  @list = List.find(params[:id])
-  @movies = @list.movies.distinct
+    @list = List.find(params[:id])
+    @chat = @list.chat
+    @messages = @chat.messages.order(created_at: :asc) if @chat
+
   end
+
+  def destroy
+    @list = List.find(params[:id])
+    @list.destroy
+  end
+
+
+
 
   private
 
@@ -60,6 +71,7 @@ class ListsController < ApplicationController
 
   def call_api(array_from_llm)
     array_of_hash = []
+    tmdb_key = ENV["api_key"]
     array_from_llm.each do |movie|
       tmdb_key = ENV.fetch('api_key', nil)
       url = "https://api.themoviedb.org/3/search/movie?query=#{URI.encode_www_form_component(movie)}&api_key=#{tmdb_key}"
@@ -82,4 +94,6 @@ class ListsController < ApplicationController
       @list.movies << movie unless @list.movies.include?(movie)
     end
   end
+
+
 end
