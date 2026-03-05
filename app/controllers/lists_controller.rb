@@ -79,8 +79,7 @@ class ListsController < ApplicationController
         value.poster_path = data["poster_path"]
         value.rate_average = data["vote_average"]
       end
-      @list.movies << movie
+      @list.movies << movie unless @list.movies.include?(movie)
     end
-
   end
 end
