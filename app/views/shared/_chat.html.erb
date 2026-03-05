@@ -1,7 +1,5 @@
 <div class="chat">
-  <div class="chat-header">
-    <h3>Chat</h3>
-  </div>
+
 
   <%= turbo_stream_from chat %>
 
@@ -13,8 +11,8 @@
 
 <%= form_with url: chat_messages_path(chat), scope: :message, id: "chat_form_#{chat.id}" do |form| %>
     <div class="input-group">
-      <%= form.text_field :content, id: "message_content", class: "form-control", placeholder: "Type your message..." %>
-      <%= form.submit "Send", class: "btn btn-primary" %>
+      <%= form.text_field :content, id: "message_content", class: "form-control", placeholder: "Ecrire un message..." %>
+      <%= form.submit "Envoyer", class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>
