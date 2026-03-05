@@ -4,15 +4,16 @@
   border-radius: .5rem;
   padding: 1.25rem 1.5rem;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   transition: $transition-base;
 
   &:hover {
     background-color: $bg-elevated;
     border-color: $border-strong;
-    transform: translateY(-1px);
+    transform: translateY(-5px);
   }
+  
 
   .list-card-title {
     color: $text-primary;
@@ -25,7 +26,6 @@
       color: $accent;
     }
   }
-
 
   .list-card-actions {
     opacity: 0;
@@ -116,3 +116,22 @@
     font-size: .95rem;
   }
 }
+
+  .list-card-carousel {
+    background-color: $bg-surface;
+    border: 1px solid $border-subtle;
+    border-radius: .5rem;
+    padding: 1.25rem 1.5rem;
+    transition: $transition-base;
+    
+    &:hover {
+      background-color: $bg-elevated;
+      border-color: $border-strong;
+      transform: translateY(-5px);
+  }
+  }
+
+    .carousel {
+    width: 90px;
+    flex: none;
+  }

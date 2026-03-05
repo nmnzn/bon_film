@@ -8,8 +8,6 @@
 
     <div class="navbar-actions">
       <% if user_signed_in? %>
-        <%= link_to "Home", root_path, class: "btn-link-subtle m-2" %>
-        <%= link_to "Messages", "#", class: "nav-link" %>
         <%= yield :navbar_actions %>
         <div class="dropdown">
           <a href="#" data-bs-toggle="dropdown" aria-expanded="false">

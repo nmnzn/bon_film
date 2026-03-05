@@ -6,8 +6,8 @@
     <h2 class="page-title"> Mes listes</h2>
 
       <div class="lists-grids">
-      <% @lists.each do |list| %>
-    <%= render "shared/list" , list: list %>
+      <% @lists.each_with_index do |list, index| %>
+    <%= render "shared/list" , list: list, index: index %>
     <% end %>
     </div>
 </div>
