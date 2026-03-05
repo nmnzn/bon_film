@@ -29,7 +29,8 @@ class ListsController < ApplicationController
   end
 
   def show
-    @list = List.find(params[:id])
+  @list = List.find(params[:id])
+  @movies = @list.movies.distinct
   end
 
   private

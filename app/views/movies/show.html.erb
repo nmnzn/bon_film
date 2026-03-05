@@ -1,1 +1,27 @@
-<h1>Movie show</h1>
+# <h1>Movie show</h1>
+<div class="container py-4">
+  <%= link_to "← Retour", (request.referer || root_path), class: "btn btn-outline-light mb-4" %>
+
+  <div class="row g-4">
+    <div class="col-12 col-md-4">
+      <%= image_tag "https://image.tmdb.org/t/p/w500#{@movie.poster_path}",
+                    alt: @movie.title,
+                    class: "img-fluid rounded shadow" %>
+    </div>
+
+    <div class="col-12 col-md-8">
+      <h1 class="mb-2"><%= @movie.title %></h1>
+
+      <p class="text-light mb-4">
+      ⭐ <%= number_with_precision(@movie.rate_average, precision: 1) %> / 10
+      </p>
+
+      <h5>Synopsis</h5>
+      <p><%= @movie.overview %></p>
+
+      <% if @movie.tmdb_id.present? %>
+        <p class="text-light small mb-0">TMDB id : <%= @movie.tmdb_id %></p>
+      <% end %>
+    </div>
+  </div>
+</div>

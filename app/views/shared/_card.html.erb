@@ -1,8 +1,13 @@
-<div class="movie-card">
-  <%= image_tag "https://image.tmdb.org/t/p/w500#{movie.poster_path}", alt: movie.title, class: "movie-card-poster" %>
-  <div class="movie-card-body">
-    <h3 class="movie-card-title"><%= movie.title %></h3>
-    <p class="movie-card-rating"><%= movie.rate_average.truncate(1) %></p>
-    <p class="movie-card-overview"><%= truncate(movie.overview, length: 70) %></p>
+<%= link_to movie_path(movie), class: "movie-card-link" do %>
+  <div class="movie-card">
+    <%= image_tag "https://image.tmdb.org/t/p/w500#{movie.poster_path}",
+                  alt: movie.title,
+                  class: "movie-card-poster" %>
+
+    <div class="movie-card-body">
+      <h3 class="movie-card-title"><%= movie.title %></h3>
+      <p class="movie-card-rating"><%= movie.rate_average.truncate(1) %></p>
+      <p class="movie-card-overview"><%= truncate(movie.overview, length: 70) %></p>
+    </div>
   </div>
-</div>
+<% end %>
