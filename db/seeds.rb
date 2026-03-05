@@ -56,4 +56,4 @@ Message.create!(chat: chat, role: "assistant", content: "Je te recommande Incept
 
 puts "Seed OK - chat et messages créés"
 puts "\nConnexion : test@test.com / password123"
- .!
+
