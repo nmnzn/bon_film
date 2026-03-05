@@ -32,6 +32,14 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
   end
 
+  def destroy
+    @list = List.find(params[:id])
+    @list.destroy
+  end
+
+
+
+
   private
 
   def list_params
@@ -59,7 +67,7 @@ class ListsController < ApplicationController
 
   def call_api(array_from_llm)
     array_of_hash = []
-    api_key = ENV["TMDB_API_KEY"]
+    tmdb_key = ENV["api_key"]
     array_from_llm.each do |movie|
       tmdb_key = ENV.fetch('api_key', nil)
       url = "https://api.themoviedb.org/3/search/movie?query=#{URI.encode_www_form_component(movie)}&api_key=#{tmdb_key}"
