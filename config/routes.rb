@@ -14,12 +14,14 @@ Rails.application.routes.draw do
   root "lists#index"
 
   resources :movies, only: [:show]
+
   resources :lists, only: [:create, :destroy, :show, :new, :index] do
     resources :chats, only: [:create]
+    resources :links, only: [:destroy]
+    post :toggle_favorite, on: :member
   end
 
   resources :chats, only: [:show] do
     resources :messages, only: [:create]
   end
-
 end

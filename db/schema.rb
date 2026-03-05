@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_05_105527) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_05_163808) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -19,6 +19,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_05_105527) do
     t.bigint "list_id", null: false
     t.datetime "updated_at", null: false
     t.index ["list_id"], name: "index_chats_on_list_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "list_id", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["list_id"], name: "index_favorites_on_list_id"
+    t.index ["user_id", "list_id"], name: "index_favorites_on_user_id_and_list_id", unique: true
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "links", force: :cascade do |t|
@@ -217,6 +227,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_05_105527) do
   end
 
   add_foreign_key "chats", "lists"
+  add_foreign_key "favorites", "lists"
+  add_foreign_key "favorites", "users"
   add_foreign_key "links", "lists"
   add_foreign_key "links", "movies"
   add_foreign_key "lists", "users"
