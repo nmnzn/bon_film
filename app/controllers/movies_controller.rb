@@ -3,3 +3,4 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
 end
+
