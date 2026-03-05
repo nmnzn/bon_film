@@ -12,7 +12,32 @@
     <div class="col-12 col-md-8">
       <h1 class="mb-2"><%= @movie.title %></h1>
 
-      <p class="text-secondary mb-4">
+      <% q = ERB::Util.url_encode(@movie.title.to_s) %>
+      <% trailer_q = ERB::Util.url_encode("#{@movie.title} bande annonce") %>
+
+      <div class="d-flex gap-2 flex-wrap my-3">
+        <%= link_to "Bande-annonce",
+            "https://www.youtube.com/results?search_query=#{trailer_q}",
+            target: "_blank", rel: "noopener",
+            class: "btn btn-sm btn-outline-light" %>
+
+        <%= link_to "Netflix",
+            "https://www.netflix.com/search?q=#{q}",
+            target: "_blank", rel: "noopener",
+            class: "btn btn-sm btn-outline-light" %>
+
+        <%= link_to "JustWatch",
+            "https://www.justwatch.com/fr/recherche?q=#{q}",
+            target: "_blank", rel: "noopener",
+            class: "btn btn-sm btn-outline-light" %>
+
+        <%= link_to "Allociné",
+            "https://www.allocine.fr/recherche/?q=#{q}",
+            target: "_blank", rel: "noopener",
+            class: "btn btn-sm btn-outline-light" %>
+      </div>
+
+      <p class="text-light mb-4">
         ⭐ <%= number_with_precision(@movie.rate_average, precision: 1) %> / 10
       </p>
 

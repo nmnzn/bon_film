@@ -1,17 +1,35 @@
-<% return if movie.nil? %>
-
-<%= link_to movie_path(movie), class: "movie-card-link" do %>
-  <div class="movie-card">
-    <% if movie.poster_path.present? %>
+<div class="movie-card-wrapper">
+  <%= link_to movie_path(movie), class: "movie-card-link" do %>
+    <div class="movie-card">
       <%= image_tag "https://image.tmdb.org/t/p/w500#{movie.poster_path}",
                     alt: movie.title,
                     class: "movie-card-poster" %>
-    <% end %>
 
-    <div class="movie-card-body">
-      <h3 class="movie-card-title"><%= movie.title %></h3>
-      <p class="movie-card-rating">⭐ <%= number_with_precision(movie.rate_average, precision: 1) %></p>
-      <p class="movie-card-overview"><%= truncate(movie.overview.to_s, length: 70) %></p>
+      <div class="movie-card-body">
+        <h3 class="movie-card-title"><%= movie.title %></h3>
+        <p class="movie-card-rating"><%= movie.rate_average.truncate(1) %></p>
+        <p class="movie-card-overview"><%= truncate(movie.overview, length: 70) %></p>
+      </div>
     </div>
+  <% end %>
+
+  <% q = ERB::Util.url_encode(movie.title.to_s) %>
+  <% trailer_q = ERB::Util.url_encode("#{movie.title} bande annonce") %>
+
+  <div class="movie-card-actions">
+    <%= link_to "Bande-annonce",
+        "https://www.youtube.com/results?search_query=#{trailer_q}",
+        target: "_blank", rel: "noopener",
+        class: "btn btn-sm btn-outline-light" %>
+
+    <%= link_to "Netflix",
+        "https://www.netflix.com/search?q=#{q}",
+        target: "_blank", rel: "noopener",
+        class: "btn btn-sm btn-outline-light" %>
+
+    <%= link_to "JustWatch",
+        "https://www.justwatch.com/fr/recherche?q=#{q}",
+        target: "_blank", rel: "noopener",
+        class: "btn btn-sm btn-outline-light" %>
   </div>
-<% end %>
+</div>
