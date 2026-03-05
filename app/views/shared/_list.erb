@@ -1,10 +1,3 @@
-
-<!-- <div class=container>
-<div class="list-card mb-3">
-  <div class="list-card-body">
-    <h3 class="list-card-title"># list.name %></h3>
-    %= link_to "Voir", list_path(list), class: "btn btn-accent btn-sm" %>  -->
-
 <div class="container">
 <div class="list-card-carousel mb-3">
   <div class="d-flex justify-content-between align-items-center ps-5 pe-5">
@@ -16,11 +9,8 @@
     </h3>
     <div>
       <%= link_to "Voir", list_path(list), class: "btn btn-accent btn-sm mb-3" %>
+      <%= link_to "Supprimer", list_path(list), data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete your list #{list.name} ?"}, class: "btn btn-danger-ghost" %>
     </div>
-    <%# image_tag "logo.png", alt: "logo", class: "movie-card-poster" %>
-
   </div>
 </div>
 </div>
-
-<%# "https://image.tmdb.org/t/p/w500#{movie.poster_path} %>
