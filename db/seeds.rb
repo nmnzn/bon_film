@@ -1,84 +1,59 @@
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
 
-User.destroy_all
+Message.destroy_all
+Chat.destroy_all
+Link.destroy_all
 List.destroy_all
 Movie.destroy_all
-Link.destroy_all
+# On garde l'user existant
+User.where.not(email: "test@test.com").destroy_all
 
-User.find_or_create_by!(email: "test@test.com") do |u|
+user = User.find_or_create_by!(email: "test@test.com") do |u|
   u.first_name = "Jean"
   u.last_name  = "Dupont"
   u.password   = "password123"
 end
 
-puts "Seed OK user type : test@test.com / password123"
+puts "Seed OK - user: test@test.com / password123"
 
-movie_1 = Movie.new(
-  overview: "tres bon film",
-  poster_path:"url",
-  rate_average: 3.2,
-  title: "mon film",
-  tmdb_id: 1
-)
+# Movies réalistes avec de vrais tmdb_id
+movies = [
+  { title: "Inception",          tmdb_id: 27205, overview: "Un voleur qui s'infiltre dans les rêves des autres se voit offrir une chance de rédemption.", poster_path: "/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg", rate_average: 8.4 },
+  { title: "The Dark Knight",    tmdb_id: 155,   overview: "Batman affronte le Joker, un criminel anarchiste qui plonge Gotham dans le chaos.", poster_path: "/qJ2tW6WMUDux911r6m7haRef0WH.jpg", rate_average: 9.0 },
+  { title: "Parasite",           tmdb_id: 496243, overview: "Toute la famille Ki-taek est au chômage. Ils s'infiltrent peu à peu dans la vie d'une famille riche.", poster_path: "/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg", rate_average: 8.5 },
+  { title: "Interstellar",       tmdb_id: 157336, overview: "Un groupe d'explorateurs utilise un tunnel de ver pour voyager au-delà des limites connues de l'espace.", poster_path: "/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg", rate_average: 8.6 },
+  { title: "The Grand Budapest Hotel", tmdb_id: 120467, overview: "Les aventures du légendaire concierge d'un grand hôtel européen entre les deux guerres mondiales.", poster_path: "/eWdyYQreja6JGCzqHWXpWHDrrPo.jpg", rate_average: 8.1 },
+  { title: "Pulp Fiction",       tmdb_id: 680,   overview: "Los Angeles. Deux tueurs à gages, un boxeur, un gangster et sa femme se retrouvent mêlés à des situations absurdes.", poster_path: "/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg", rate_average: 8.9 },
+]
 
+created_movies = movies.map { |attrs| Movie.create!(attrs) }
+puts "Seed OK - #{created_movies.count} films créés"
 
+# Listes avec associations par objet (pas par id hardcodé)
+list_action = List.create!(name: "Thrillers & Action", prompt: "films de thriller et action cultes", user: user)
+list_art    = List.create!(name: "Cinéma d'auteur",    prompt: "films d'auteur primés",              user: user)
 
-movie_1.save
+# Links
+inception, dark_knight, parasite, interstellar, grand_budapest, pulp_fiction = created_movies
 
+Link.create!(list: list_action, movie: inception)
+Link.create!(list: list_action, movie: dark_knight)
+Link.create!(list: list_action, movie: interstellar)
+Link.create!(list: list_action, movie: pulp_fiction)
 
-movie_2 = Movie.new(
-  overview: "tres tres bon film",
-  poster_path: "url",
-  rate_average: 4.2,
-  title: "the film",
-  tmdb_id: 2
-)
+Link.create!(list: list_art, movie: parasite)
+Link.create!(list: list_art, movie: grand_budapest)
+Link.create!(list: list_art, movie: inception)
 
-movie_2.save
+puts "Seed OK - listes et liens créés"
 
-puts "Seed OK list create"
+# Chat avec quelques messages pour list_action
+chat = Chat.create!(list: list_action)
+Message.create!(chat: chat, role: "user",      content: "Suggère-moi un film d'action haletant pour ce soir.")
+Message.create!(chat: chat, role: "assistant", content: "Je te recommande Inception ! Un thriller de Christopher Nolan avec des rebondissements incroyables. Note : 8.4/10.")
 
-list_1 = List.new(
-  name: "Ma list",
-  prompt: "film comique",
-  user_id: 1
-)
-
-list_1.save
-
-
-list_2 = List.new(
-  name: "T'as list",
-  prompt: "film comique",
-  user_id: 1
-)
-list_2.save
-  puts "Seed OK list create"
-
-link_1 = Link.new(
-  list_id: 1,
-  movie_id: 2
-)
-link_1.save
-
-link_2 = Link.new(
-  list_id: 1,
-  movie_id: 1
-)
-link_2.save
-
-link_3 = Link.new(
-  list_id: 2,
-  movie_id: 2
-)
-link_3.save
-
-puts "Seed OK link create"
+puts "Seed OK - chat et messages créés"
+puts "\nConnexion : test@test.com / password123"
+ .!
