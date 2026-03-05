@@ -1,8 +1,18 @@
-<div class=container>
-<div class="list-card mb-3">
-  <div class="list-card-body">
-    <h3 class="list-card-title"><%= list.name %></h3>
-    <%= link_to "Voir", list_path(list), class: "btn btn-accent btn-sm mb-3" %>
+<div class="container">
+<div class="list-card-carousel mb-3">
+  <div class="d-flex justify-content-between align-items-center ps-5 pe-5">
+    <div>
+      <%= image_tag "https://image.tmdb.org/t/p/w92#{list.movies.first.poster_path}", alt: list.movies.first.title, class:"rounded" %>
+    </div>
+    <h3 class="list-card-title">
+      <%= list.name %>
+    </h3>
+    <div>
+      <%= link_to "Voir", list_path(list), class: "btn btn-accent btn-sm mb-3" %>
+    </div>
+    <%# image_tag "logo.png", alt: "logo", class: "movie-card-poster" %>
   </div>
 </div>
 </div>
+
+<%# "https://image.tmdb.org/t/p/w500#{movie.poster_path} %>
