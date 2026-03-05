@@ -1,9 +1,11 @@
-<h1><%= @list.name %></h1>
-
 <div class="container">
-  <div class="movies-grid">
-    <% @list.movies.each do |movie| %>
-      <%= render "shared/card", movie: movie %>
-    <% end %>
+  <h2><%= @list.name %></h2>
+
+  <div class="container">
+    <div class="movies-grid">
+      <% @list.movies.each do |movie| %>
+        <%= render "shared/card", movie: movie %>
+      <% end %>
+    </div>
   </div>
 </div>
