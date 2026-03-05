@@ -15,6 +15,7 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
     @list.user_id = current_user.id
     if @list.save
+      Chat.create!(list: @list)
       prompt = @list.prompt
       @suggestions = movies_suggestion(prompt)
       movies_data = call_api(@suggestions)
@@ -30,6 +31,9 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
+    @chat = @list.chat
+    @messages = @chat.messages.order(created_at: :asc) if @chat
+
   end
 
   def destroy
@@ -90,4 +94,6 @@ class ListsController < ApplicationController
       @list.movies << movie unless @list.movies.include?(movie)
     end
   end
+
+
 end

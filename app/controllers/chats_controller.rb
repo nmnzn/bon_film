@@ -1,3 +1,5 @@
 class ChatsController < ApplicationController
-    # show create 
+  def show
+    @chat = Chat.find(params[:id])
+  end
 end

@@ -1,0 +1,3 @@
+<%= turbo_stream.append "messages_#{@chat.id}", partial: "messages/message", locals: { message: @message } %>
+<%= turbo_stream.append "messages_#{@chat.id}", partial: "messages/message", locals: { message: @assistant_message } %>
+<%= turbo_stream.set_attribute "value", "", "message_content" %>
