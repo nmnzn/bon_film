@@ -1,21 +1,28 @@
-<div class="d-flex justify-content-between ms-5 me-5 ps-5 pt-3 pb-0">
-  <h1 ><%= @list.name %></h1>
-  <div class="justify-content-center">
-  <%= link_to "Supprimer liste", list_path(@list), data: {turbo_method: :delete, turbo_confirm: "Etes-vous sûr de vouloir supprimer votre liste #{@list.name} ?"}, class:"btn btn-danger" %>
+<div class="d-flex justify-content-between ms-5 me-5 ps-5 pt-3 pb-0 align-items-center">
+  <h1><%= @list.name %></h1>
+
+  <div class="d-flex gap-2 justify-content-center">
+    <%= button_to (@is_favorite ? "★ Favori" : "☆ Mettre en favori"),
+        toggle_favorite_list_path(@list),
+        method: :post,
+        class: "btn btn-outline-light" %>
+
+    <%= link_to "Delete list",
+        list_path(@list),
+        data: { turbo_method: :delete, turbo_confirm: "Are you sure to delete your list #{@list.name} ?" },
+        class: "btn btn-danger" %>
   </div>
 </div>
 
-
 <div class="container">
-  <div>
-  <%= render "shared/chat", messages: @messages, chat: @chat %>
+  <div class="mt-3">
+    <%= render "shared/chat", messages: @messages, chat: @chat %>
   </div>
 
-
-  <div class="container">
+  <div class="container mt-4">
     <div class="movies-grid">
-      <% @list.movies.each do |movie| %>
-        <%= render "shared/card", movie: movie %>
+      <% @list.links.includes(:movie).each do |link| %>
+        <%= render "shared/card", movie: link.movie, list: @list, link: link %>
       <% end %>
     </div>
   </div>
