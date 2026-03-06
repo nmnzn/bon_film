@@ -2,26 +2,50 @@
   <%= link_to "Ajouter une liste", new_list_path, class: "btn btn-accent btn-sm" %>
 <% end %>
 <div class="container mt-4">
-  <h2 class="page-title ps-3 pb-3">Mes listes 🍿</h2>
+  <h2 class="page-title pb-3">Mes listes 🍿</h2>
+
+    <div class="row">
+      <h6 class="page-title ps-3 pb-3">Mes favoris 🤩</h6>
+        
+        <% favorites_lists = []
+          @lists.each do |list| 
+            unless list.favorites[0] == nil
+              favorites_lists.push(list)
+            # raise
+            end
+          end %>
+        
+          <% if favorites_lists.size > 0 %> 
+            <% favorites_lists.each do |list| %> 
+              <div class="col-3 mb-5">
+                <%= render "shared/card-index", list: list, movie: list.movies.first %>
+              </div>
+            <% end %>
+          <% end %> 
+    </div>
 
 
-  <div class="lists-grids">
-    <% @lists.each_with_index do |list, index| %>
-      <div class="list-item" style="position: relative;">
-        <% is_fav = @favorite_list_ids&.include?(list.id) %>
+    <div>
+      <h6 class="page-title ps-3 pb-3">Mes autres listes</h6>
+      <div class="lists-grids">
+        <% @lists.each_with_index do |list, index| %>
+          <div class="list-item" style="position: relative;">
+            <% is_fav = @favorite_list_ids&.include?(list.id) %>
 
-        <% star_filled = '<i id="star_filled" class="fa-solid fa-star"></i>'.html_safe %>
-        <% star_empty = '<i id="star_empty" class="fa-regular fa-star"></i>'.html_safe %>
+            <% star_filled = '<i id="star_filled" class="fa-solid fa-star"></i>'.html_safe %>
+            <% star_empty = '<i id="star_empty" class="fa-regular fa-star"></i>'.html_safe %>
 
-        <%= button_to (is_fav ? star_filled : star_empty),
-            toggle_favorite_list_path(list),
-            method: :post,
-            form: { data: { turbo: true } },
-            class: "btn btn-sm",
-            style: "position:absolute; top:15px; right:20px; z-index: 5;" %>
+            <%= button_to (is_fav ? star_filled : star_empty),
+                toggle_favorite_list_path(list),
+                method: :post,
+                form: { data: { turbo: true } },
+                class: "btn btn-sm",
+                style: "position:absolute; top:15px; right:20px; z-index: 5;" %>
 
-        <%= render "shared/list", list: list, index: index %>
+            <%= render "shared/list", list: list, index: index %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
+    </div>
+
 </div>
