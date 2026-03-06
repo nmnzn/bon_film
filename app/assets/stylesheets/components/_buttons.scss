@@ -141,3 +141,19 @@ button.btn-movie-action:hover {
 .movie-rating-accent{
   color: #f5b43c !important;
 }
+
+.btn-remove-link {
+  background: transparent !important;
+  border-color: rgba($color-danger, 0.4) !important;
+  color: $color-danger !important;
+  padding: 0.25rem 0.45rem !important;
+  line-height: 1;
+
+  .material-symbols-outlined { font-size: 1rem; }
+
+  &:hover {
+    background: rgba($color-danger, 0.12) !important;
+    border-color: $color-danger !important;
+    color: $color-danger !important;
+  }
+}

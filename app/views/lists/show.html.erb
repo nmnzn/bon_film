@@ -1,33 +1,56 @@
-<div class="d-flex justify-content-between ms-5 me-5 ps-5 pt-3 pb-0 align-items-center">
-  <h1><%= @list.name %></h1>
+<div class="ls-page">
 
-  <div class="d-flex gap-2 justify-content-center">
-    <%= button_to (@is_favorite ? "★ Favori" : "☆ Mettre en favori"),
-        toggle_favorite_list_path(@list),
-        method: :post,
-        class: "btn btn-outline-light btn-favorite" %>
+  <!-- Hero header : infos + chat -->
+  <div class="ls-hero">
+    <div class="container ls-hero-inner">
 
-    <%= link_to "Supprimer liste",
-        list_path(@list),
-        data: { turbo_method: :delete, turbo_confirm: "Are you sure to delete your list #{@list.name} ?" },
-        class: "btn btn-danger" %>
-  </div>
-</div>
+      <!-- Colonne gauche : navigation + titre + actions -->
+      <div class="ls-hero-info">
 
-<div class="container">
-  <div class="mt-3">
-    <%= render "shared/chat", messages: @messages, chat: @chat %>
-  </div>
-
-  <div class="container mt-4">
-    <% if @list.links.any? %>
-      <div class="movies-grid">
-        <% @list.links.includes(:movie).each do |link| %>
-          <%= render "shared/card", movie: link.movie, list: @list, link: link %>
+        <%= link_to lists_path, class: "ls-back" do %>
+          <span class="material-symbols-outlined">arrow_back</span>
+          <span>Vos listes</span>
         <% end %>
+
+        <div class="ls-hero-meta">
+          <span class="ls-hero-label">
+            <span class="material-symbols-outlined">movie_filter</span>
+            Votre liste
+          </span>
+          <h1 class="ls-hero-title"><%= @list.name %></h1>
+          <p class="ls-hero-count">
+            <%= @list.links.count %> film<%= @list.links.count > 1 ? "s" : "" %>
+          </p>
+        </div>
+
+        <div class="ls-hero-actions">
+          <%= button_to (@is_favorite ? "★ Favori" : "☆ Mettre en favori"),
+              toggle_favorite_list_path(@list),
+              method: :post,
+              class: "btn btn-sm btn-favorite" %>
+          <%= link_to "Supprimer la liste",
+              list_path(@list),
+              data: { turbo_method: :delete, turbo_confirm: "Supprimer la liste « #{@list.name} » ?" },
+              class: "btn btn-sm btn-danger-ghost" %>
+        </div>
+
       </div>
-    <% else %>
-      <p class="text-secondary mt-4">Aucun film dans cette liste pour le moment.</p>
-    <% end %>
+
+      <!-- Colonne droite : chat -->
+      <div class="ls-hero-chat">
+        <%= render "shared/chat", messages: @messages, chat: @chat %>
+      </div>
+
+    </div>
   </div>
+
+  <!-- Films -->
+  <div class="container ls-films-section">
+    <div class="movies-grid">
+      <% @list.links.includes(:movie).each do |link| %>
+        <%= render "shared/card", movie: link.movie, list: @list, link: link %>
+      <% end %>
+    </div>
+  </div>
+
 </div>

@@ -1,4 +1,64 @@
-<div class=container>
-  <h2>Créer une nouvelle liste</h2>
-  <%= render "form", list: @list %>
+<div class="new-list-page">
+  <div class="container">
+    <div class="row align-items-center g-5 nl-row">
+
+      <!-- Left: décoratif -->
+      <div class="col-lg-5 d-none d-lg-flex flex-column gap-4">
+
+        <div class="nl-deco-card">
+          <div class="nl-deco-icon">
+            <span class="material-symbols-outlined">auto_fix_high</span>
+          </div>
+          <div class="nl-deco-text">
+            <p class="nl-label">IA Cinéma</p>
+            <p class="nl-value">Analyse en cours…</p>
+          </div>
+        </div>
+
+        <h2 class="nl-headline">
+          Créez votre liste<br>
+          <span class="nl-accent">sur&#8209;mesure</span>
+        </h2>
+
+        <p class="nl-sub">
+          Décrivez votre humeur du moment et laissez notre IA générer une sélection de films parfaitement adaptée.
+        </p>
+
+        <div class="nl-steps">
+          <div class="nl-step ">
+            <span class="nl-step-num">1</span>
+            <span>Nommez votre liste</span>
+          </div>
+          <div class="nl-step">
+            <span class="nl-step-num">2</span>
+            <span>Décrivez vos envies</span>
+          </div>
+          <div class="nl-step">
+            <span class="nl-step-num">3</span>
+            <span>Choisissez le nombre de films</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: formulaire -->
+      <div class="col-lg-7">
+        <div class="nl-form-card">
+
+          <div class="nl-form-header">
+            <div class="nl-form-badge">
+              <span class="material-symbols-outlined">movie_filter</span>
+              Nouvelle liste
+            </div>
+            <h1 class="nl-form-title">Parlez-nous de vos envies</h1>
+            <p class="nl-form-sub">Notre IA analyse votre description pour sélectionner les films qui vous correspondent.</p>
+          </div>
+
+          <%= render "form", list: @list %>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>

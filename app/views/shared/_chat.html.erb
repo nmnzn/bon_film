@@ -1,18 +1,63 @@
-<div class="chat">
+<div class="chat-panel">
 
+  <div class="chat-panel-header">
+    <div class="chat-panel-avatar">
+      <span class="material-symbols-outlined">smart_toy</span>
+    </div>
+    <div class="chat-panel-header-text">
+      <p class="chat-panel-title">Assistant IA</p>
+      <p class="chat-panel-status">
+        <span class="chat-status-dot"></span>
+        En ligne
+      </p>
+    </div>
+    <div class="chat-panel-badge ms-auto">
+      <span class="material-symbols-outlined">auto_awesome</span>
+      Bon film AI
+    </div>
+  </div>
 
   <%= turbo_stream_from chat %>
 
-  <div id="messages_<%= chat.id %>" class="chat-messages">
-    <% messages.each do |message| %>
-      <%= render "messages/message", message: message %>
+  <div id="messages_<%= chat.id %>" class="chat-panel-messages">
+    <% if messages.empty? %>
+      <div class="chat-empty">
+        <span class="material-symbols-outlined chat-empty-icon">forum</span>
+        <p class="chat-empty-title">Votre assistant est pret !</p>
+        <p class="chat-empty-sub">Demandez-lui quel film regarder en premier, selon votre humeur du moment.</p>
+      </div>
+    <% else %>
+      <% messages.each do |message| %>
+        <%= render "messages/message", message: message %>
+      <% end %>
     <% end %>
   </div>
 
-<%= form_with url: chat_messages_path(chat), scope: :message, id: "chat_form_#{chat.id}" do |form| %>
-    <div class="input-group">
-      <%= form.text_field :content, id: "message_content", class: "form-control", placeholder: "Ecrire un message..." %>
-      <%= form.submit "Envoyer", class: "btn btn-primary" %>
+  <%= form_with url: chat_messages_path(chat), scope: :message, id: "chat_form_#{chat.id}", class: "chat-panel-form", data: { turbo: true } do |form| %>
+    <div class="chat-panel-input-wrap">
+      <%= form.text_field :content,
+          id: "message_content",
+          class: "chat-panel-input",
+          placeholder: "Quel film regarder ce soir ?",
+          autocomplete: "off" %>
+      <%= form.button type: "submit", class: "chat-panel-send" do %>
+        <span class="material-symbols-outlined">send</span>
+      <% end %>
     </div>
   <% end %>
+
 </div>
+
+<script>
+  (function() {
+    const el = document.getElementById("messages_<%= chat.id %>");
+    if (el) el.scrollTop = el.scrollHeight;
+
+    const form = document.getElementById("chat_form_<%= chat.id %>");
+    if (form) {
+      form.addEventListener("turbo:submit-end", function() {
+        if (el) setTimeout(() => el.scrollTop = el.scrollHeight, 100);
+      });
+    }
+  })();
+</script>

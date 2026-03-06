@@ -1,6 +1,47 @@
-<%= simple_form_for(list) do |f| %>
-  <%= f.input :name, :label => "Nom de votre liste", :placeholder => "Film du dimanche" %>
-  <%= f.input :prompt, :label => "Quel type de film souhaitez-vous ajouter dans votre liste ?", :placeholder => "Je cherche des films sympas à regarder un dimanche soir, juste pour me détendre et rire un peu." %>
-  <%= f.input :movies_count, label: "Nombre de films suggérés (1-15)", as: :integer, input_html: { min: 1, max: 15, value: list.movies_count || 5 } %>
-  <%= f.submit class:"btn btn-accent btn-sm mb-3" %>
+<%= simple_form_for(list, html: { class: "nl-form" }) do |f| %>
+
+  <div class="nl-field">
+    <%= f.label :name, "Nom de votre liste", class: "nl-field-label" %>
+    <%= f.text_field :name,
+        class: "nl-field-input",
+        placeholder: "Film du dimanche" %>
+  </div>
+
+  <div class="nl-field">
+    <%= f.label :prompt, "Decrivez vos envies du moment", class: "nl-field-label" %>
+    <p class="nl-field-hint">Plus votre description est precise, meilleure sera la selection.</p>
+    <%= f.text_area :prompt,
+        class: "nl-field-input nl-field-textarea",
+        placeholder: "Je cherche des films sympas a regarder un dimanche soir, juste pour me detendre et rire un peu.",
+        rows: 4 %>
+  </div>
+
+  <div class="nl-field">
+    <div class="nl-range-wrap">
+      <div class="nl-range-header">
+        <%= f.label :movies_count, "Nombre de films suggeres", class: "nl-field-label mb-0" %>
+        <span class="nl-range-value" id="nl-range-display"><%= list.movies_count || 5 %></span>
+      </div>
+      <%= f.range_field :movies_count,
+          min: 1, max: 15,
+          value: list.movies_count || 5,
+          class: "nl-range-input",
+          id: "nl-movies-count-range",
+          oninput: "document.getElementById('nl-range-display').textContent = this.value; this.style.setProperty('--val', ((this.value - 1) / 14 * 100) + '%')",
+          style: "--val: #{((( list.movies_count || 5) - 1) / 14.0 * 100).round(1)}%" %>
+      <div class="nl-range-labels">
+        <span>1 film</span>
+        <span>8 films</span>
+        <span>15 films</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="nl-submit-wrap">
+    <%= f.submit "Generer ma liste",
+        class: "nl-submit",
+        data: { disable_with: "Generation en cours..." } %>
+    <span class="nl-submit-hint">Team Memorize 2026</span>
+  </div>
+
 <% end %>
