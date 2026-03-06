@@ -61,3 +61,83 @@
     color: $text-secondary;
   }
 }
+
+.favorite-btn-form {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 20;
+  margin: 0;
+}
+
+.favorite-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+}
+
+.favorite-btn:hover {
+  transform: scale(1.06);
+  background: rgba(0, 0, 0, 0.55);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.favorite-btn.is-favorite {
+  background: rgba(245, 180, 60, 0.25);
+  border-color: rgba(245, 180, 60, 0.7);
+  color: #f5b43c; /* proche de ton bouton "Voir" */
+}
+
+.btn-favorite {
+  border-color: #f5b43c !important;
+  color: #f5b43c !important;
+}
+
+.btn-favorite:hover {
+  border-color: #f5b43c !important;
+  color: #f5b43c !important;
+}
+
+.movie-card-actions .btn{
+  border-color: #f5b43c !important;
+  color: #f5b43c !important;
+  background: rgba(245, 180, 60, 0.08) !important;
+}
+
+.movie-card-actions .btn:hover{
+  border-color: #f5b43c !important;
+  color: #111 !important;
+  background: #f5b43c !important;
+}
+
+a.btn-movie-action,
+button.btn-movie-action {
+  border-color: #f5b43c !important;
+  color: #f5b43c !important;
+  background: rgba(245, 180, 60, 0.08) !important;
+}
+
+a.btn-movie-action:hover,
+button.btn-movie-action:hover {
+  border-color: #f5b43c !important;
+  background: #f5b43c !important;
+  color: #111 !important;
+}
+
+.movie-rating-accent{
+  color: #f5b43c !important;
+}

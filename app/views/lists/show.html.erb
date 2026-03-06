@@ -5,7 +5,7 @@
     <%= button_to (@is_favorite ? "★ Favori" : "☆ Mettre en favori"),
         toggle_favorite_list_path(@list),
         method: :post,
-        class: "btn btn-outline-light" %>
+        class: "btn btn-outline-light btn-favorite" %>
 
     <%= link_to "Delete list",
         list_path(@list),

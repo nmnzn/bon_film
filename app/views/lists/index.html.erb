@@ -11,11 +11,11 @@
         <% is_fav = @favorite_list_ids&.include?(list.id) %>
 
         <%= button_to (is_fav ? "★" : "☆"),
-            toggle_favorite_list_path(list),
-            method: :post,
-            form: { data: { turbo: true } },
-            class: "btn btn-sm btn-outline-light",
-            style: "position:absolute; top:10px; right:10px; z-index: 5;" %>
+        toggle_favorite_list_path(list),
+        method: :post,
+        class: "favorite-btn #{'is-favorite' if is_fav}",
+          form_class: "favorite-btn-form",
+          title: (is_fav ? "Retirer des favoris" : "Ajouter aux favoris") %>
 
         <%= render "shared/list", list: list, index: index %>
       </div>

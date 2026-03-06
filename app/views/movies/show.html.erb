@@ -1,6 +1,5 @@
-# <h1>Movie show</h1>
 <div class="container py-4">
-  <%= link_to "← Retour", (request.referer || root_path), class: "btn btn-outline-light mb-4" %>
+  <%= link_to "← Retour", (request.referer || root_path), class: "btn btn-sm btn-outline-light btn-movie-action" %>
 
   <div class="row g-4">
     <div class="col-12 col-md-4">
@@ -19,30 +18,30 @@
         <%= link_to "Bande-annonce",
             "https://www.youtube.com/results?search_query=#{trailer_q}",
             target: "_blank", rel: "noopener",
-            class: "btn btn-sm btn-outline-light" %>
+            class: "btn btn-sm btn-outline-light btn-movie-action" %>
 
         <%= link_to "Netflix",
             "https://www.netflix.com/search?q=#{q}",
             target: "_blank", rel: "noopener",
-            class: "btn btn-sm btn-outline-light" %>
+            class: "btn btn-sm btn-outline-light btn-movie-action" %>
 
         <%= link_to "JustWatch",
             "https://www.justwatch.com/fr/recherche?q=#{q}",
             target: "_blank", rel: "noopener",
-            class: "btn btn-sm btn-outline-light" %>
+            class: "btn btn-sm btn-outline-light btn-movie-action" %>
 
         <%= link_to "Allociné",
             "https://www.allocine.fr/recherche/?q=#{q}",
             target: "_blank", rel: "noopener",
-            class: "btn btn-sm btn-outline-light" %>
+            class: "btn btn-sm btn-outline-light btn-movie-action" %>
       </div>
 
-      <p class="text-light mb-4">
-        ⭐ <%= number_with_precision(@movie.rate_average, precision: 1) %> / 10
+      <p class="mb-4 movie-rating-accent">
+      ⭐ <%= number_with_precision(@movie.rate_average, precision: 1) %> / 10
       </p>
 
       <h5>Synopsis</h5>
-      <p><%= @movie.overview %></p>
+      <p><%= @long_description %></p>
 
       <% if @movie.tmdb_id.present? %>
         <p class="text-secondary small mb-0">TMDB id : <%= @movie.tmdb_id %></p>
