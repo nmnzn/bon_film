@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e8a020",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#0f1117",
+                        "card-bg": "#1e2235",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<title>Bon Film ! AI - Votre Assistant Cinéma Intelligent</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 px-6 md:px-20 py-4 sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-50">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-3xl">movie_filter</span>
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-tight">Bon Film ! AI</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:block text-slate-600 dark:text-slate-400 font-medium px-4">Parcourir</button>
+<button class="flex min-w-[100px] cursor-pointer items-center justify-center rounded-xl h-10 px-5 bg-primary text-background-dark text-sm font-bold transition-transform hover:scale-105 active:scale-95">
+<span class="truncate">Connexion</span>
+</button>
+</div>
+</header> -->
+<main class="flex flex-col flex-1">
+<section class="px-6 md:px-20 py-12 md:py-24 max-w-7xl mx-auto w-full">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="flex flex-col gap-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider w-fit">
+<span class="material-symbols-outlined text-sm">auto_awesome</span>
+                                Nouvelle Ère Cinéma
+                            </div>
+<div class="flex flex-col gap-4">
+<h1 class="text-slate-900 dark:text-slate-100 text-4xl md:text-6xl font-black leading-tight tracking-tight">
+                                    Le premier assistant IA qui sait <span class="text-primary">vraiment</span> ce que vous voulez voir.
+                                </h1>
+<p class="text-slate-600 dark:text-slate-400 text-lg md:text-xl font-normal max-w-lg">
+                                    Découvrez des films qui vous correspondent grâce à notre IA de pointe. Fini de scroller pendant des heures.
+                                </p>
+</div>
+<div class="flex flex-wrap gap-4">
+<button class="flex min-w-[160px] cursor-pointer items-center justify-center rounded-xl h-14 px-8 bg-primary text-background-dark text-base font-bold shadow-lg shadow-primary/20 transition-all hover:bg-primary/90">
+<span class="truncate"><%= link_to "Commencez maintenant !", lists_path %></span>
+</button>
+<button class="flex min-w-[160px] cursor-pointer items-center justify-center rounded-xl h-14 px-8 border-2 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-base font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="truncate"><%= link_to "Découvrir !", lists_path %></span>
+</button>
+</div>
+</div>
+<div class="relative">
+<div class="aspect-square rounded-3xl overflow-hidden shadow-2xl relative group">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark to-transparent opacity-40"></div>
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A futuristic collection of movie posters in a high-tech interface" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDf0OW7k4mdpHA4LzQ7uC2x2-2RtRHPtp3IJu7ByBynB60LZvpbjr3jvqD8Qb3ljpUaFOYiWFZAKGbrvWif7tNCSbpOeAGEDGsVnpOGApJaez0Flo33q-gvVKzS2Bea1BkOHvyuuODFHMDObLppV1anzB6YDT-TbHovLpIHvdMF5vpDgS9qVS0kMw-r44NmePRc524dd5gJ9Lbr-rdBCfIT0jFmg6huvDf5UGPY-ks60APFfuTJD0-ZaHa8S2SLt-h41GMOs-wv4Ag')"></div>
+<div class="absolute bottom-6 left-6 right-6 p-6 rounded-2xl bg-card-bg/90 backdrop-blur-md border border-slate-700/50 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-full bg-primary flex items-center justify-center text-background-dark">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<div>
+<p class="text-xs text-primary font-bold uppercase tracking-widest">En cours d'analyse</p>
+<p class="text-sm font-medium">Suggestion : Inception (2010)</p>
+</div>
+</div>
+<div class="flex -space-x-3">
+<div class="size-8 rounded-full border-2 border-card-bg bg-slate-800" data-alt="User avatar 1" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBaFFSNOpX8qoseROOyITO4Utv5oLD8Q16HHJENdzAgcV0KqIwEeKln0nPr4BCwy_eq-r4dh0iC1Ix4kqkEl8CuyfSMJXicesniTX_u-aYv45XF48bDl06u7j9tqlXxByC5ZZMqHwlx4sLvUaEmFEk2Cec7jCL7edN1t-eRot3s5ij9HCp2CLsbEpS_kUK_XNaAW-67NSNc88P7L_U9hhW1sYpt9qQZIQesSalU_apA7j6tQg91n8_HZ1s12dCb14RGUsOO4Ht70Bc')"></div>
+<div class="size-8 rounded-full border-2 border-card-bg bg-slate-800" data-alt="User avatar 2" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCbjXGewv4ljYmPC5DCYWG7jzwzCK9PzEwd15_Vnn0Y8ddWGN_9G_YNIcV9whEIiI1cv2KKfldSD3BgmDUKPf7VaGQFJam3yeRyOlJxUjEOHNmhXHeYmd6WRSGGe3jt6ET-4u0tUaKWSyYe1SvzbUF25fLEGKZaA7bDyKYgUfjA5RIs6O_JEdSElRBxm4aOY20kfOO4GoAe3Z5xksb-PK91SOwZIkvodz5LNS_8CjEsExnOIgey2qe0AJOqk3vSKehTuFB8UlkVhWI')"></div>
+<div class="size-8 rounded-full border-2 border-card-bg bg-primary flex items-center justify-center text-[10px] font-bold text-background-dark">+12k</div>
+</div>
+</div>
+</div>
+<div class="absolute -top-6 -right-6 md:-right-10 p-4 bg-card-bg border border-slate-700 rounded-2xl shadow-xl flex flex-col gap-2">
+<p class="text-[10px] text-slate-400 uppercase font-bold">Niveau Actuel</p>
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">military_tech</span>
+</div>
+<div>
+<p class="text-sm font-bold text-white leading-none">Cinéphile Elite</p>
+<p class="text-[10px] text-primary">1,250 XP • +15%</p>
+</div>
+</div>
+<div class="w-full bg-slate-800 h-1.5 rounded-full mt-1">
+<div class="bg-primary h-full rounded-full w-[75%]"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="px-6 md:px-20 py-20 bg-slate-100 dark:bg-[#1e2235]/30">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+<div class="max-w-2xl">
+<h2 class="text-primary text-sm font-bold uppercase tracking-[0.2em] mb-4">Fonctionnalités Révolutionnaires</h2>
+<h3 class="text-slate-900 dark:text-slate-100 text-3xl md:text-5xl font-bold leading-tight">L'IA au service de votre passion</h3>
+</div>
+<p class="text-slate-600 dark:text-slate-400 max-w-sm">Bon Film ! AI transforme votre manière de choisir vos films avec une précision chirurgicale.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="group p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-card-bg hover:border-primary/50 transition-all duration-300">
+<div class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined text-3xl">auto_fix_high</span>
+</div>
+<h4 class="text-xl font-bold mb-4">Listes sur-mesure par IA</h4>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                    Générez instantanément une liste de films adaptée à vos envies du moment grâce à notre intelligence artificielle.
+                                </p>
+</div>
+<div class="group p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-card-bg hover:border-primary/50 transition-all duration-300">
+<div class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined text-3xl">psychology</span>
+</div>
+<h4 class="text-xl font-bold mb-4">Votre Assistant Personnel</h4>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                    Un guide interactif pour vous aider à choisir LE film parfait au sein de vos recommandations personnalisées.
+                                </p>
+</div>
+<div class="group p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-card-bg hover:border-primary/50 transition-all duration-300">
+<div class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined text-3xl">bolt</span>
+</div>
+<h4 class="text-xl font-bold mb-4">Redirection Streaming Express</h4>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                    Accédez à vos films préférés sur vos plateformes favorites (Netflix, Disney+, Canal+) en un seul clic.
+                                </p>
+</div>
+</div>
+</div>
+</section>
+<section class="px-6 md:px-20 py-20 max-w-7xl mx-auto w-full">
+<div class="flex flex-wrap items-center justify-center gap-12 grayscale opacity-50">
+<div class="text-2xl font-black text-slate-400 flex items-center gap-2">NETFLIX</div>
+<div class="text-2xl font-black text-slate-400 flex items-center gap-2">Disney+</div>
+<div class="text-2xl font-black text-slate-400 flex items-center gap-2">CANAL+</div>
+<div class="text-2xl font-black text-slate-400 flex items-center gap-2">Prime Video</div>
+<div class="text-2xl font-black text-slate-400 flex items-center gap-2">Apple TV+</div>
+</div>
+</section>
+<section class="px-6 md:px-20 py-20">
+<div class="bg-primary rounded-3xl p-10 md:p-20 text-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.2),transparent)]"></div>
+<div class="relative z-10 flex flex-col items-center gap-8">
+<h2 class="text-background-dark text-3xl md:text-5xl font-black max-w-2xl leading-tight">
+                                Prêt à découvrir votre prochain film coup de cœur ?
+                            </h2>
+<p class="text-background-dark/80 text-lg md:text-xl font-medium max-w-xl">
+                                Rejoignez plus de 50 000 cinéphiles qui ont déjà transformé leur expérience cinéma.
+                            </p>
+<button class="flex min-w-[200px] cursor-pointer items-center justify-center rounded-2xl h-16 px-10 bg-background-dark text-primary text-lg font-bold shadow-2xl transition-transform hover:scale-105 active:scale-95">
+                                <%= link_to "Commencez maintenant !", lists_path %>
+                            </button>
+</div>
+<div class="absolute top-10 left-10 size-16 rounded-2xl bg-white/10 flex items-center justify-center text-white backdrop-blur-sm -rotate-12">
+<span class="material-symbols-outlined text-3xl">stars</span>
+</div>
+<div class="absolute bottom-10 right-10 size-20 rounded-2xl bg-white/10 flex items-center justify-center text-white backdrop-blur-sm rotate-12">
+<span class="material-symbols-outlined text-4xl">workspace_premium</span>
+</div>
+</div>
+</section>
+</main>
+<footer class="px-6 md:px-20 py-12 border-t border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-2xl">movie_filter</span>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight">Bon Film ! AI</h2>
+</div>
+<div class="flex gap-8 text-sm text-slate-500 font-medium">
+<a class="hover:text-primary transition-colors" href="#">Confidentialité</a>
+<a class="hover:text-primary transition-colors" href="#">Conditions</a>
+<a class="hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+<p class="text-sm text-slate-500">© 2026 Bon Film ! AI. Tous droits réservés.</p>
+</div>
+</footer>
+</div>
+</div>
+</body></html>
