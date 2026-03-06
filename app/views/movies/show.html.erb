@@ -1,5 +1,6 @@
 <div class="container py-4">
-  <%= link_to "← Retour", (request.referer || root_path), class: "btn btn-sm btn-outline-light btn-movie-action" %>
+  <%= link_to "← Retour", (request.referer || root_path),
+    class: "btn btn-sm btn-outline-light btn-movie-action mt-3 ms-3 mb-4 px-3 py-2" %>
 
   <div class="row g-4">
     <div class="col-12 col-md-4">
@@ -37,7 +38,7 @@
       </div>
 
       <p class="mb-4 movie-rating-accent">
-      ⭐ <%= number_with_precision(@movie.rate_average, precision: 1) %> / 10
+        ⭐ <%= number_with_precision(@movie.rate_average, precision: 1) %> / 10
       </p>
 
       <h5>Synopsis</h5>

@@ -17,19 +17,28 @@
   <% trailer_q = ERB::Util.url_encode("#{movie.title} bande annonce") %>
 
   <div class="movie-card-actions">
+    <%# Bouton retirer uniquement sur la show d'une liste (quand list + link existent) %>
+    <% if defined?(list) && list && defined?(link) && link %>
+      <%= button_to "Retirer",
+          list_link_path(list, link),
+          method: :delete,
+          form: { data: { turbo_confirm: "Retirer ce film de la liste ?" } },
+          class: "btn btn-sm btn-outline-light btn-movie-action" %>
+    <% end %>
+
     <%= link_to "Bande-annonce",
         "https://www.youtube.com/results?search_query=#{trailer_q}",
         target: "_blank", rel: "noopener",
-        class: "btn btn-sm btn-outline-light" %>
+        class: "btn btn-sm btn-outline-light btn-movie-action" %>
 
     <%= link_to "Netflix",
         "https://www.netflix.com/search?q=#{q}",
         target: "_blank", rel: "noopener",
-        class: "btn btn-sm btn-outline-light" %>
+        class: "btn btn-sm btn-outline-light btn-movie-action" %>
 
     <%= link_to "JustWatch",
         "https://www.justwatch.com/fr/recherche?q=#{q}",
         target: "_blank", rel: "noopener",
-        class: "btn btn-sm btn-outline-light" %>
+        class: "btn btn-sm btn-outline-light btn-movie-action" %>
   </div>
 </div>
