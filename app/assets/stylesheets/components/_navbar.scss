@@ -3,16 +3,27 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: $bg-surface;
+  backdrop-filter: blur(8px);
+  background: rgba($bg-surface, 0.9);
   border-bottom: 1px solid $border-subtle;
-  padding: .875rem 0;
+  padding: .75rem 0;
+  transition: background .25s ease, box-shadow .25s ease;
+
+  // effet léger quand on scroll (si classe ajoutée via JS)
+  &.is-scrolled {
+    box-shadow: 0 4px 14px rgba(0,0,0,.06);
+  }
 
   .navbar-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
   }
 
+  // ── Brand ─────────────────────────────────────────
   .navbar-brand {
     display: flex;
     align-items: center;
@@ -22,20 +33,56 @@
     font-size: 1.1rem;
     letter-spacing: .02em;
     text-decoration: none;
-    transition: color .2s;
+    transition: color .2s ease, transform .15s ease;
 
     &:hover {
       color: $accent;
+      transform: translateY(-1px);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $accent;
+      outline-offset: 4px;
     }
 
     .brand-icon {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
     }
   }
 
+  // ── Actions (boutons, profil, etc.) ───────────────
   .navbar-actions {
     display: flex;
     align-items: center;
     gap: .75rem;
+
+    > * {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+// ── Responsive ─────────────────────────────────────
+@media (max-width: 768px) {
+  .app-navbar {
+
+    .navbar-container {
+      padding: 0 1rem;
+    }
+
+    .navbar-brand {
+      font-size: 1rem;
+
+      .brand-icon {
+        font-size: 1.1rem;
+      }
+    }
+
+    .navbar-actions {
+      gap: .5rem;
+    }
   }
 }
