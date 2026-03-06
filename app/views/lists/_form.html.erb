@@ -1,5 +1,6 @@
 <%= simple_form_for(list) do |f| %>
   <%= f.input :name, :label => "Nom de votre liste", :placeholder => "Film du dimanche" %>
   <%= f.input :prompt, :label => "Quel type de film souhaitez-vous ajouter dans votre liste ?", :placeholder => "Je cherche des films sympas à regarder un dimanche soir, juste pour me détendre et rire un peu." %>
+  <%= f.input :movies_count, label: "Nombre de films suggérés (1-15)", as: :integer, input_html: { min: 1, max: 15, value: list.movies_count || 5 } %>
   <%= f.submit class:"btn btn-accent btn-sm mb-3" %>
 <% end %>
