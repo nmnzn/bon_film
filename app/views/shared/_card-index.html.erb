@@ -1,0 +1,14 @@
+<div class="movie-card-wrapper">
+  <%= link_to list_path(list), class: "movie-card-link" do %>
+    <div class="movie-card">
+      <%= image_tag "https://image.tmdb.org/t/p/w500#{list.movies.first.poster_path}",
+                    alt: list.movies.first.title,
+                    class: "movie-card-poster" %>
+
+      <div class="movie-card-body">
+        <h3 class="movie-card-title"><%= list.name %></h3>
+        <p class="movie-card-text"><%= list.movies.count %> film(s) dans la liste </p>
+      </div>
+    </div>
+  <% end %>
+</div>
