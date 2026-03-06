@@ -11,6 +11,9 @@
 </head>
 
 <body>
+  <% content_for :navbar_actions do %>
+    <%= link_to "Mes listes", lists_path, class: "btn btn-accent btn-sm" %>
+  <% end %> 
 
 <div class="d-flex flex-column min-vh-100">
 
