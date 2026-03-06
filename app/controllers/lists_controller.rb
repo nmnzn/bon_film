@@ -21,7 +21,8 @@ class ListsController < ApplicationController
     @list.user_id = current_user.id
 
     if @list.save
-      Chat.create!(list: @list)
+      chat = Chat.create!(list: @list)
+      chat.messages.create!(role: "assistant", content: "Pose moi tes questions sur les films de la liste !")
 
       prompt = @list.prompt
       @suggestions = movies_suggestion(prompt)
@@ -70,17 +71,17 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:name, :prompt, :user_id)
+    params.require(:list).permit(:name, :prompt, :user_id, :movies_count)
   end
 
   def movies_suggestion(prompt)
-    system_prompt = "Tu es un spécialiste du cinéma (1910 à aujourd’hui) comme un curateur cinéma qui recommande des films simplement et naturellement. Ton ton : sympa, concis, utile. Pas de spoilers. Zéro blabla marketing.
+    system_prompt = "Tu es un spécialiste du cinéma (1910 à aujourd'hui) comme un curateur cinéma qui recommande des films simplement et naturellement. Ton ton : sympa, concis, utile. Pas de spoilers. Zéro blabla marketing.
 
-    Ton objectif : proposer exactement 5 titres de films pertinents pour l’utilisateur, en te basant uniquement sur ce qui est explicitement présent dans la conversation : le nom de la liste, les films déjà présents dans cette liste, et éventuellement quelques messages récents.
+    Ton objectif : proposer exactement #{@list.movies_count} titres de films pertinents pour l'utilisateur, en te basant uniquement sur ce qui est explicitement présent dans la conversation : le nom de la liste, les films déjà présents dans cette liste, et éventuellement quelques messages récents.
 
     Méthode :
-    1) Comprends l’intention : déduis les goûts probables à partir du nom de la liste + des films déjà présents + des messages récents.
-    2) Évite les doublons : ne recommande jamais un film déjà dans la liste (même si l’orthographe ou l’année varie).
+    1) Comprends l'intention : déduis les goûts probables à partir du nom de la liste + des films déjà présents + des messages récents.
+    2) Évite les doublons : ne recommande jamais un film déjà dans la liste (même si l'orthographe ou l'année varie).
     3) Si les goûts sont flous : ne pose pas de questions, propose quand même 5 films cohérents avec le thème de la liste.
     4) Ne donne aucune explication, aucun tag, aucune année, aucune plateforme, aucune note, aucun réalisateur/casting. Uniquement des titres.
 
