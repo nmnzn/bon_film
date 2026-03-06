@@ -20,10 +20,14 @@
   </div>
 
   <div class="container mt-4">
-    <div class="movies-grid">
-      <% @list.links.includes(:movie).each do |link| %>
-        <%= render "shared/card", movie: link.movie, list: @list, link: link %>
-      <% end %>
-    </div>
+    <% if @list.links.any? %>
+      <div class="movies-grid">
+        <% @list.links.includes(:movie).each do |link| %>
+          <%= render "shared/card", movie: link.movie, list: @list, link: link %>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-secondary mt-4">Aucun film dans cette liste pour le moment.</p>
+    <% end %>
   </div>
 </div>
