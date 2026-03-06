@@ -1,7 +1,12 @@
 .chat {
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 6px;
   padding: 10px;
+  width: 600px;
+  max-width: 600px;
+  border: 1px solid #ddd;
+  box-shadow: 0 8px 25px rgba(0,0,0,.08);
+  
 }
 
 .chat-header {
@@ -11,12 +16,14 @@
 }
 
 .chat-messages {
-  height: 300px;
+  height: 200px;
   overflow-y: auto;
   padding: 10px;
 }
 
 .chat-input {
-  border-top: 1px solid #ccc;
-  padding: 10px;
+  border-top: 1px solid #eee;
+  padding: .75rem;
+  display: flex;
+  gap: .5rem;
 }
