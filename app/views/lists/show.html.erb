@@ -7,7 +7,7 @@
         method: :post,
         class: "btn btn-outline-light btn-favorite" %>
 
-    <%= link_to "Delete list",
+    <%= link_to "Supprimer liste",
         list_path(@list),
         data: { turbo_method: :delete, turbo_confirm: "Are you sure to delete your list #{@list.name} ?" },
         class: "btn btn-danger" %>
