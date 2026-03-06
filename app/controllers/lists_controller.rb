@@ -2,9 +2,14 @@ class ListsController < ApplicationController
   require "json"
   require "open-uri"
 
-  # index new create show destroy
+  # index new create show destroy toggle_favorite
   def index
-    @lists = current_user.lists
+    @favorite_list_ids = current_user.favorites.pluck(:list_id)
+
+    favorites = current_user.lists.where(id: @favorite_list_ids)
+    others    = current_user.lists.where.not(id: @favorite_list_ids)
+
+    @lists = favorites + others
   end
 
   def new
@@ -14,14 +19,14 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
     @list.user_id = current_user.id
+
     if @list.save
       Chat.create!(list: @list)
+
       prompt = @list.prompt
       @suggestions = movies_suggestion(prompt)
       movies_data = call_api(@suggestions)
       movies_create(movies_data)
-       ## suite pour Neil afin de créer 5 instances de Movies à associer à la @list à partir de cet array de 5 hash (chaque hash égal un movie)
-      #   @list.save
 
       redirect_to list_path(@list)
     else
@@ -30,14 +35,15 @@ class ListsController < ApplicationController
   end
 
   def show
-    @list = List.find(params[:id])
+    @list = current_user.lists.find(params[:id])
     @chat = @list.chat
     @messages = @chat.messages.order(created_at: :asc) if @chat
-
+    @is_favorite = current_user.favorites.exists?(list_id: @list.id)
   end
 
   def destroy
-    @list = List.find(params[:id])
+    @list = current_user.lists.find(params[:id])
+
     if @list.destroy
       redirect_to lists_path
     else
@@ -45,8 +51,21 @@ class ListsController < ApplicationController
     end
   end
 
+  def toggle_favorite
+    @list = current_user.lists.find(params[:id])
 
+    favorite = current_user.favorites.find_by(list_id: @list.id)
 
+    if favorite
+      favorite.destroy
+      notice = "Retirée des favoris."
+    else
+      current_user.favorites.create!(list_id: @list.id)
+      notice = "Ajoutée aux favoris."
+    end
+
+    redirect_back fallback_location: lists_path, notice: notice
+  end
 
   private
 
@@ -57,7 +76,7 @@ class ListsController < ApplicationController
   def movies_suggestion(prompt)
     system_prompt = "Tu es un spécialiste du cinéma (1910 à aujourd’hui) comme un curateur cinéma qui recommande des films simplement et naturellement. Ton ton : sympa, concis, utile. Pas de spoilers. Zéro blabla marketing.
 
-    Ton objectif : proposer exactement 5 titres de films pertinents pour l’utilisateur, en te basant uniquement sur ce qui est explicitement présent dans la conversation : le nom de la liste, les films déjà dedans, et éventuellement quelques messages récents.
+    Ton objectif : proposer exactement 5 titres de films pertinents pour l’utilisateur, en te basant uniquement sur ce qui est explicitement présent dans la conversation : le nom de la liste, les films déjà présents dans cette liste, et éventuellement quelques messages récents.
 
     Méthode :
     1) Comprends l’intention : déduis les goûts probables à partir du nom de la liste + des films déjà présents + des messages récents.
@@ -75,16 +94,17 @@ class ListsController < ApplicationController
 
   def call_api(array_from_llm)
     array_of_hash = []
-    tmdb_key = ENV["api_key"]
+    tmdb_key = ENV.fetch("api_key", nil)
+
     array_from_llm.each do |movie|
-      tmdb_key = ENV.fetch('api_key', nil)
       url = "https://api.themoviedb.org/3/search/movie?query=#{URI.encode_www_form_component(movie)}&api_key=#{tmdb_key}"
-      movie = URI.parse(url).read
-      movie_parsed = JSON.parse(movie)
+      movie_json = URI.parse(url).read
+      movie_parsed = JSON.parse(movie_json)
       hash_clean = movie_parsed["results"].first
       array_of_hash.push(hash_clean) if hash_clean
     end
-    return array_of_hash
+
+    array_of_hash
   end
 
   def movies_create(movies_data)
@@ -95,9 +115,8 @@ class ListsController < ApplicationController
         value.poster_path = data["poster_path"]
         value.rate_average = data["vote_average"]
       end
+
       @list.movies << movie unless @list.movies.include?(movie)
     end
   end
-
-
 end
