@@ -1,0 +1,140 @@
+// ══════════════════════════════════════════════════════════
+//  Page : Show liste
+// ══════════════════════════════════════════════════════════
+
+.ls-page {
+  min-height: calc(100vh - 80px);
+  background: $bg-base;
+}
+
+// ── Hero header ─────────────────────────────────────────────
+
+.ls-hero {
+  background: $bg-surface;
+  border-bottom: 1px solid $border-subtle;
+  padding: 2rem 0 2.25rem;
+  position: relative;
+  overflow: hidden;
+
+  // Blob déco accent
+  &::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba($accent, 0.05) 0%, transparent 65%);
+    pointer-events: none;
+  }
+}
+
+.ls-hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 480px;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+// Colonne gauche
+.ls-hero-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+// Bouton retour
+.ls-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: $text-muted;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  width: fit-content;
+  transition: color 0.2s;
+
+  .material-symbols-outlined { font-size: 1rem; }
+
+  &:hover { color: $text-secondary; }
+}
+
+// Bloc titre
+.ls-hero-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.ls-hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: $accent;
+
+  .material-symbols-outlined { font-size: 0.9rem; }
+}
+
+.ls-hero-title {
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+  font-weight: 800;
+  color: $text-primary;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.ls-hero-count {
+  font-size: 0.85rem;
+  color: $text-muted;
+  margin: 0;
+}
+
+// Boutons action
+.ls-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+// Colonne droite : chat
+.ls-hero-chat {
+  position: relative;
+  z-index: 1;
+
+  .chat-panel {
+    max-width: 100%;
+  }
+}
+
+// ── Section films ───────────────────────────────────────────
+
+.ls-films-section {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+// ── Responsive ─────────────────────────────────────────────
+
+@include media-breakpoint-down(xl) {
+  .ls-hero-inner {
+    grid-template-columns: 1fr 420px;
+    gap: 2rem;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .ls-hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .ls-hero-chat .chat-panel {
+    max-width: 100%;
+  }
+}

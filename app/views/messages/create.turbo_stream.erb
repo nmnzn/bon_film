@@ -1,5 +1,13 @@
 <%= turbo_stream.append "messages_#{@chat.id}", partial: "messages/message", locals: { message: @message } %>
 <%= turbo_stream.append "messages_#{@chat.id}", partial: "messages/message", locals: { message: @assistant_message } %>
 <%= turbo_stream.replace "message_content" do %>
-  <%= tag.input type: "text", id: "message_content", name: "message[content]", class: "form-control", placeholder: "Type your message..." %>
+  <%= tag.input type: "text", id: "message_content", name: "message[content]", class: "chat-panel-input", placeholder: "Quel film regarder ce soir ?", autocomplete: "off" %>
+<% end %>
+<%= turbo_stream.append "messages_#{@chat.id}" do %>
+  <script>
+    (function() {
+      var el = document.getElementById("messages_<%= @chat.id %>");
+      if (el) el.scrollTop = el.scrollHeight;
+    })();
+  </script>
 <% end %>

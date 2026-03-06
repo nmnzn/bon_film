@@ -1,22 +1,57 @@
-.message{
-  padding: .5rem .75rem;
-  border-radius: 12px;
-  font-size: .9rem;
-  padding: 2rem 2rem;
+// ══════════════════════════════════════════════════════════
+//  Composant : Bulles de message
+// ══════════════════════════════════════════════════════════
+
+.msg-wrap {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+
+  &--user {
+    flex-direction: row-reverse;
+  }
+
+  &--ai {
+    flex-direction: row;
+  }
 }
 
-.message-assistant {
-  background-color: #141821;
-  padding: 5px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  justify-content: right
-}
-
-.message-user {
-  background-color: #ebad41;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 10px;
+// Avatar IA
+.msg-ai-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba($accent, 0.12);
+  border: 1px solid rgba($accent, 0.25);
+  display: grid;
+  place-items: center;
+  color: $accent;
+  flex-shrink: 0;
   align-self: flex-end;
+
+  .material-symbols-outlined { font-size: 0.9rem; }
+}
+
+// Bulles
+.msg-bubble {
+  max-width: 78%;
+  padding: 0.6rem 0.9rem;
+  border-radius: 16px;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  word-break: break-word;
+
+  &--user {
+    background: $accent;
+    color: #0f1117;
+    font-weight: 500;
+    border-bottom-right-radius: 4px;
+  }
+
+  &--ai {
+    background: $bg-elevated;
+    color: $text-primary;
+    border: 1px solid $border-subtle;
+    border-bottom-left-radius: 4px;
+  }
 }

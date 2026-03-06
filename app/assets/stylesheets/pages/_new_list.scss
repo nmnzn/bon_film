@@ -1,0 +1,408 @@
+// ══════════════════════════════════════════════════════════
+//  Page : Nouvelle liste
+// ══════════════════════════════════════════════════════════
+
+.new-list-page {
+  min-height: calc(100vh - 80px);
+  background: $bg-base;
+  padding: 3rem 0 5rem;
+  position: relative;
+  overflow: hidden;
+
+  // Blob accent haut-droit
+  &::before {
+    content: '';
+    position: absolute;
+    top: -250px;
+    right: -200px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba($accent, 0.055) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  // Blob info bas-gauche
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba($color-info, 0.04) 0%, transparent 65%);
+    pointer-events: none;
+  }
+}
+
+.nl-row {
+  min-height: calc(100vh - 160px);
+}
+
+// ── Colonne décorative gauche ──────────────────────────────
+
+.nl-deco-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: $bg-surface;
+  border: 1px solid $border-subtle;
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  max-width: 300px;
+  animation: nl-float 3.5s ease-in-out infinite;
+}
+
+@keyframes nl-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-7px); }
+}
+
+.nl-deco-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba($accent, 0.12);
+  border: 1px solid rgba($accent, 0.25);
+  display: grid;
+  place-items: center;
+  color: $accent;
+  flex-shrink: 0;
+
+  .material-symbols-outlined { font-size: 1.5rem; }
+}
+
+.nl-deco-text {
+  .nl-label {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: $accent;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .nl-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $text-primary;
+    margin: 0;
+  }
+}
+
+.nl-headline {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: $text-primary;
+  margin: 0;
+}
+
+.nl-accent { color: $accent; }
+
+.nl-sub {
+  color: $text-secondary;
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 380px;
+  margin: 0;
+}
+
+// Steps
+.nl-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.nl-step {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: $text-muted;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+
+  &--active {
+    color: $text-primary;
+    font-weight: 500;
+
+    .nl-step-num {
+      background: $accent;
+      color: #0f1117;
+      border-color: $accent;
+    }
+  }
+}
+
+.nl-step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid $border-strong;
+  display: grid;
+  place-items: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+// ── Carte formulaire droite ────────────────────────────────
+
+.nl-form-card {
+  background: $bg-surface;
+  border: 1px solid $border-subtle;
+  border-radius: 24px;
+  padding: 2.5rem 2.75rem;
+  position: relative;
+
+  // Filet lumineux en haut
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba($accent, 0.45), transparent);
+    border-radius: 1px;
+  }
+}
+
+.nl-form-header {
+  margin-bottom: 2rem;
+}
+
+.nl-form-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba($accent, 0.1);
+  border: 1px solid rgba($accent, 0.22);
+  color: $accent;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 1.25rem;
+
+  .material-symbols-outlined { font-size: 0.95rem; }
+}
+
+.nl-form-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: $text-primary;
+  margin: 0 0 0.5rem;
+  line-height: 1.25;
+}
+
+.nl-form-sub {
+  color: $text-secondary;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+// ── Champs du formulaire ───────────────────────────────────
+
+.nl-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.625rem;
+}
+
+.nl-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.nl-field-label {
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: $text-secondary;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.nl-field-hint {
+  font-size: 0.78rem;
+  color: $text-muted;
+  margin: -0.1rem 0 0.1rem;
+}
+
+.nl-field-input {
+  background: $bg-elevated;
+  border: 1.5px solid $border-strong;
+  border-radius: 12px;
+  color: $text-primary;
+  font-family: $body-font;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.1rem;
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+  &::placeholder { color: $text-muted; }
+
+  &:focus {
+    outline: none;
+    border-color: $accent;
+    background: lighten($bg-elevated, 1%);
+    box-shadow: 0 0 0 3px rgba($accent, 0.13);
+  }
+}
+
+.nl-field-textarea {
+  resize: vertical;
+  min-height: 112px;
+  line-height: 1.6;
+}
+
+// ── Range slider ───────────────────────────────────────────
+
+.nl-range-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.nl-range-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nl-range-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 0.5rem;
+  border-radius: 10px;
+  background: rgba($accent, 0.12);
+  border: 1px solid rgba($accent, 0.28);
+  color: $accent;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: background 0.15s;
+}
+
+input[type="range"].nl-range-input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  cursor: pointer;
+  background: linear-gradient(
+    to right,
+    $accent 0%,
+    $accent var(--val, 28.6%),
+    $border-strong var(--val, 28.6%),
+    $border-strong 100%
+  );
+
+  &:focus { outline: none; }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: $accent;
+    border: 3px solid $bg-surface;
+    box-shadow: 0 0 0 2px rgba($accent, 0.35), 0 2px 8px rgba(0,0,0,.4);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+    &:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 0 4px rgba($accent, 0.25), 0 2px 8px rgba(0,0,0,.4);
+    }
+  }
+
+  &::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: $accent;
+    border: 3px solid $bg-surface;
+    cursor: pointer;
+  }
+}
+
+.nl-range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: $text-muted;
+}
+
+// ── Bouton submit ──────────────────────────────────────────
+
+.nl-submit-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding-top: 0.5rem;
+}
+
+.nl-submit {
+  background: $accent;
+  color: #0f1117;
+  border: none;
+  border-radius: 12px;
+  font-family: $body-font;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+
+  &:hover {
+    background: $accent-hover;
+    box-shadow: 0 8px 28px rgba($accent, 0.32);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    background: $accent-dark;
+    transform: translateY(0);
+    box-shadow: none;
+  }
+
+  &:disabled,
+  &[disabled] {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+.nl-submit-hint {
+  font-size: 0.75rem;
+  color: $text-muted;
+  letter-spacing: 0.03em;
+}
+
+// ── Responsive mobile ──────────────────────────────────────
+
+@include media-breakpoint-down(lg) {
+  .nl-form-card {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .nl-form-card {
+    border-radius: 16px;
+    padding: 1.75rem 1.25rem;
+  }
+}

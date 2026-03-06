@@ -1,22 +1,16 @@
-<div class="row g-3 message-row">
-
-  <div class="col-md-6">
-    <% if message.role == "user" %>
-      <div class="message message-user">
-        <strong>Utilisateur</strong>
-        <p><%= message.content %></p>
-      </div>
-    <% end %>
+<% if message.role == "user" %>
+  <div class="msg-wrap msg-wrap--user">
+    <div class="msg-bubble msg-bubble--user">
+      <%= message.content %>
+    </div>
   </div>
-
-
-  <div class="col-md-6">
-    <% if message.role == "assistant" %>
-      <div class="message message-ai">
-        <strong>Assistant</strong>
-        <p><%= message.content %></p>
-      </div>
-    <% end %>
+<% else %>
+  <div class="msg-wrap msg-wrap--ai">
+    <div class="msg-ai-avatar">
+      <span class="material-symbols-outlined">smart_toy</span>
+    </div>
+    <div class="msg-bubble msg-bubble--ai">
+      <%= message.content %>
+    </div>
   </div>
-
-</div>
+<% end %>
