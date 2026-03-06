@@ -1,21 +1,24 @@
 <% content_for :navbar_actions do %>
   <%= link_to "Ajouter une liste", new_list_path, class: "btn btn-accent btn-sm" %>
 <% end %>
-
 <div class="container mt-4">
-  <h2 class="page-title">Mes listes</h2>
+  <h2 class="page-title ps-3 pb-3">Mes listes 🍿</h2>
+
 
   <div class="lists-grids">
     <% @lists.each_with_index do |list, index| %>
       <div class="list-item" style="position: relative;">
         <% is_fav = @favorite_list_ids&.include?(list.id) %>
 
-        <%= button_to (is_fav ? "★" : "☆"),
-        toggle_favorite_list_path(list),
-        method: :post,
-        class: "favorite-btn #{'is-favorite' if is_fav}",
-          form_class: "favorite-btn-form",
-          title: (is_fav ? "Retirer des favoris" : "Ajouter aux favoris") %>
+        <% star_filled = '<i id="star_filled" class="fa-solid fa-star"></i>'.html_safe %>
+        <% star_empty = '<i id="star_empty" class="fa-regular fa-star"></i>'.html_safe %>
+
+        <%= button_to (is_fav ? star_filled : star_empty),
+            toggle_favorite_list_path(list),
+            method: :post,
+            form: { data: { turbo: true } },
+            class: "btn btn-sm",
+            style: "position:absolute; top:15px; right:20px; z-index: 5;" %>
 
         <%= render "shared/list", list: list, index: index %>
       </div>
