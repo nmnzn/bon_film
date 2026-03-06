@@ -15,8 +15,9 @@
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <%# <link rel="icon" href="/Users/mathis/code/mathiskmz/bon_film/app/assets/images/popcorn.png" type="image/png"> %>
+    <%# <link rel="icon" href="/Users/mathis/code/mathiskmz/bon_film/app/assets/images/popcorn.png" type="image/svg+xml"> %>
+    <%= favicon_link_tag "popcorn.png" %>
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
