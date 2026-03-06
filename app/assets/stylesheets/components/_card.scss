@@ -13,7 +13,7 @@
     border-color: $border-strong;
     transform: translateY(-5px);
   }
-  
+
 
   .list-card-title {
     color: $text-primary;
@@ -115,7 +115,7 @@
     margin-bottom: 1.25rem;
     font-size: .95rem;
   }
-  
+
   .movie-card-link {
   text-decoration: none;
   color: inherit;
@@ -129,7 +129,7 @@
     border-radius: .5rem;
     padding: 1.25rem 1.5rem;
     transition: $transition-base;
-    
+
     &:hover {
       background-color: $bg-elevated;
       border-color: $border-strong;
@@ -154,4 +154,8 @@
 
       .list-card-p {
       color: $text-muted;
-    }
+  }
+
+  .movie-card-actions{
+  margin-top: 14px; 
+}
