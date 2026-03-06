@@ -9,7 +9,7 @@ class ListsController < ApplicationController
     favorites = current_user.lists.where(id: @favorite_list_ids)
     others    = current_user.lists.where.not(id: @favorite_list_ids)
 
-    @lists = favorites + others
+    @lists = favorites + others 
   end
 
   def new

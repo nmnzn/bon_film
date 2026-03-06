@@ -8,9 +8,12 @@
     <h3 class="list-card-title">
       <%= list.name %>
     </h3>
+    <p class="list-card-p">
+      <%= list.prompt.capitalize %>
+    </p>
     <div>
       <%= link_to "Voir", list_path(list), class: "btn btn-accent btn-sm mb-3" %>
-      <%= link_to "Supprimer", list_path(list), data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete your list #{list.name} ?"}, class: "btn btn-danger-ghost" %>
+      <%= link_to "Supprimer", list_path(list), data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete your list #{list.name} ?"}, class: "btn btn-danger-ghost mb-3" %>
     </div>
   </div>
 </div>
